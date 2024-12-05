@@ -274,3 +274,20 @@ def bubble_plot(df, col_x, col_y, col_size, scale = 1000):
     plt.show()
 
 
+def plot_multiple_boxplots(df, columns, dim_matriz_visual = 2):
+    num_cols = len(columns)
+    num_rows = num_cols // dim_matriz_visual + num_cols % dim_matriz_visual
+    fig, axes = plt.subplots(num_rows, dim_matriz_visual, figsize=(12, 6 * num_rows))
+    axes = axes.flatten()
+
+    for i, column in enumerate(columns):
+        if df[column].dtype in ['int64', 'float64']:
+            sns.boxplot(data=df, x=column, ax=axes[i])
+            axes[i].set_title(column)
+
+    # Ocultar ejes vacíos
+    for j in range(i+1, num_rows * 2):
+        axes[j].axis('off')
+
+    plt.tight_layout()
+    plt.show()

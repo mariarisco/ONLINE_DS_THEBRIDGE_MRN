@@ -274,3 +274,25 @@ def bubble_plot(df, col_x, col_y, col_size, scale = 1000):
     plt.show()
 
 
+def mostrar_diagramas_violin(df, columnas_numericas):
+    """
+    Muestra una matriz de diagramas de violín para las columnas numéricas especificadas de un DataFrame.
+
+    Args:
+    df (pd.DataFrame): DataFrame que contiene los datos.
+    columnas_numericas (list): Lista de nombres de las columnas numéricas.
+    """
+    num_cols = len(columnas_numericas)
+
+    # Configurar el tamaño de la figura
+    plt.figure(figsize=(num_cols * 4, 4))
+
+    # Crear un diagrama de violín para cada columna numérica
+    for i, col in enumerate(columnas_numericas, 1):
+        plt.subplot(1, num_cols, i)
+        sns.violinplot(y=df[col])
+        plt.title(col)
+
+    # Mostrar la matriz de diagramas de violín
+    plt.tight_layout()
+    plt.show()
