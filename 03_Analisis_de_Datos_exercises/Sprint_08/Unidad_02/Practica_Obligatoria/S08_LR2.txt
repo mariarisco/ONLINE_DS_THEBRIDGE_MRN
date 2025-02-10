@@ -1,0 +1,53 @@
+def scatter_plot_with_controls(df, x_col, y_col, color_col= None, size_col = "", scale= 1, legend= True):
+
+    fig, ax = plt.subplots(figsize=(20,10))
+    sizes=(10,1000)
+
+    if type(size_col) == str:
+        if size_col != "":
+            if color_col:
+                scatter = sns.scatterplot(data = df,
+                                          x = x_col, 
+                                          y = y_col, 
+                                          size = df[size_col] * scale, 
+                                          hue = color_col, 
+                                          alpha = 0.5, 
+                                          palette = "viridis", 
+                                          ax = ax, 
+                                          sizes = sizes)
+            else:
+                scatter = sns.scatterplot(data = df,
+                                          x = x_col, 
+                                          y = y_col, 
+                                          size = df[size_col] * scale, 
+                                          alpha = 0.5, 
+                                        #   palette = "viridis", 
+                                          ax = ax, 
+                                          sizes = sizes)
+        elif color_col:
+            scatter = sns.scatterplot(data = df,
+                                      x = x_col, 
+                                      y = y_col, 
+                                      hue = color_col, 
+                                      alpha=0.5, 
+                                      palette='viridis', 
+                                      ax = ax, 
+                                      sizes = sizes)
+        
+    else:
+        scatter = sns.scatterplot(data = df,
+                                  x = x_col, 
+                                  y = y_col, 
+                                  size = size_col, 
+                                  alpha=0.5, 
+                                #   palette='viridis', 
+                                  ax = ax, 
+                                  sizes = sizes)
+    
+    if legend:
+        ax.legend(ncol = 2, loc="upper right", frameon = False, labelspacing = 1.5)
+
+    ax.set_xlabel(x_col)
+    ax.set_ylabel(y_col)
+
+    return ax
