@@ -1,0 +1,12 @@
+Tarjeta: descargar drivers de NVIDIA GeForce RTX 2050
+
+1. Crear entorno virtual para GPU-Tensorflow
+conda create -n GPUenv python=3.9
+conda activate GPUenv # activar el entorno virtual
+
+2. Instalar tf
+pip install "tensorflow<2.11" #instalar tf, versión anterior a 2.11
+
+3. Instalar cuda
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0 # en el env base
+
